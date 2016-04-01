@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps;
+package com.grability.coolestapps.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.grability.coolestapps.R;
 
 /**
  * A placeholder fragment containing a simple view.
