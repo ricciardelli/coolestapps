@@ -19,6 +19,8 @@ package com.grability.coolestapps.model;
 import com.google.gson.annotations.SerializedName;
 import com.grability.coolestapps.util.Constants;
 
+import java.util.List;
+
 /**
  * Entry model
  *
@@ -31,7 +33,7 @@ public class Entry {
     private Name name;
 
     @SerializedName(Constants.IM_IMAGE)
-    private Image image;
+    private List<Image> image;
 
     private Summary summary;
 
@@ -54,7 +56,7 @@ public class Entry {
     @SerializedName(Constants.IM_RELEASE_DATE)
     private ReleaseDate releaseDate;
 
-    public Entry(Name name, Image image, Summary summary, Price price, ContentType contentType, Rights rights, Title title, Link link, Id id, Artist artist, Category category, ReleaseDate releaseDate) {
+    public Entry(Name name, List<Image> image, Summary summary, Price price, ContentType contentType, Rights rights, Title title, Link link, Id id, Artist artist, Category category, ReleaseDate releaseDate) {
         this.name = name;
         this.image = image;
         this.summary = summary;
@@ -77,11 +79,11 @@ public class Entry {
         this.name = name;
     }
 
-    public Image getImage() {
+    public List<Image> getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(List<Image> image) {
         this.image = image;
     }
 
