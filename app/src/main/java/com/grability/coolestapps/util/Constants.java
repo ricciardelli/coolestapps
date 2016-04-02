@@ -24,12 +24,22 @@ package com.grability.coolestapps.util;
  */
 public class Constants {
 
-    public final static String IM_NAME = "im:name";
-    public final static String IM_IMAGE = "im:image";
-    public final static String IM_PRICE = "im:price";
-    public final static String IM_CONTENT_TYPE = "im:contentType";
-    public final static String IM_ID = "im:id";
-    public final static String IM_BUNDLE_ID = "im:bundleId";
-    public final static String IM_ARTIST = "im:artist";
-    public final static String IM_RELEASE_DATE = "im:releaseDate";
+    /**
+     * JSON Service Base URL
+     */
+    public static final String SERVICE_BASE_URL = "https://itunes.apple.com/us/rss/topfreeapplications/";
+
+    /**
+     * JSON Service param to retrieve the top free applications.
+     */
+    public static final String LIMIT_PARAM = "limit={limit}/json";
+
+    public static final String IM_NAME = "im:name";
+    public static final String IM_IMAGE = "im:image";
+    public static final String IM_PRICE = "im:price";
+    public static final String IM_CONTENT_TYPE = "im:contentType";
+    public static final String IM_ID = "im:id";
+    public static final String IM_BUNDLE_ID = "im:bundleId";
+    public static final String IM_ARTIST = "im:artist";
+    public static final String IM_RELEASE_DATE = "im:releaseDate";
 }
