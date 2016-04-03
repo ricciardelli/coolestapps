@@ -30,9 +30,14 @@ public class Constants {
     public static final String SERVICE_BASE_URL = "https://itunes.apple.com/us/rss/topfreeapplications/";
 
     /**
+     * Param identifier
+     */
+    public static final String LIMIT_PARAM = "limit";
+
+    /**
      * JSON Service param to retrieve the top free applications.
      */
-    public static final String LIMIT_PARAM = "limit={limit}/json";
+    public static final String LIMIT_PARAM_URL = "limit={" + LIMIT_PARAM + "}/json";
 
     public static final String IM_NAME = "im:name";
     public static final String IM_IMAGE = "im:image";
