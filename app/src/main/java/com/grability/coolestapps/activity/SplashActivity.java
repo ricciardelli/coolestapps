@@ -62,6 +62,7 @@ public class SplashActivity extends AppCompatActivity implements Callback<Servic
         if (response.isSuccessful()) {
             Log.d(LOG_TAG, "ServiceResponse body :: " + response.body());
             showMainActivity(response.body().getFeed());
+            // TODO Save JSON response as a preference
         } else {
             showMainActivity(null);
         }
