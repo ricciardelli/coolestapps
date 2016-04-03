@@ -18,6 +18,7 @@ package com.grability.coolestapps.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.grability.coolestapps.R;
+import com.grability.coolestapps.fragment.MainActivityFragment;
 import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.util.Constants;
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = getClass().getSimpleName();
 
     @Bind(R.id.toolbar)
-    Toolbar toolbar;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +47,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
 
         Feed feed = (Feed) getIntent().getSerializableExtra(Constants.FEED_KEY);
+
         if (feed == null) {
-            Snackbar.make(toolbar, R.string.error_connection, Snackbar.LENGTH_LONG)
+            Snackbar.make(mToolbar, R.string.error_connection, Snackbar.LENGTH_LONG)
                     .setAction(R.string.action_retry, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -57,8 +60,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }).show();
             // TODO Retrieve JSON from preferences
+            // TODO Show an empty view
         } else {
-            // TODO Render categories as tabs
+            Fragment fragment = new MainActivityFragment();
+            Bundle args = new Bundle();
+            args.putSerializable(Constants.FEED_KEY, feed);
+            fragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment).commit();
         }
     }
 

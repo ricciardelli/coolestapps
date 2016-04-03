@@ -53,7 +53,7 @@ public class SplashActivity extends AppCompatActivity implements Callback<Servic
 
         Service service = retrofit.create(Service.class);
         // TODO Get limit from preferences
-        service.getFeed(10).enqueue(this);
+        service.getFeed(20).enqueue(this);
     }
 
     @Override

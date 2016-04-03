@@ -46,4 +46,9 @@ public class Category implements Serializable {
                 "attributes=" + attributes +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object object) {
+        return attributes.getId().equalsIgnoreCase(((Category) object).attributes.getId());
+    }
 }

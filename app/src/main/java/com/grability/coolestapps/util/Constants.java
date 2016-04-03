@@ -44,6 +44,11 @@ public class Constants {
      */
     public static final String FEED_KEY = "feed_key";
 
+    /**
+     * Category key to use among fragments and intent calls.
+     */
+    public static final String CATEGORY_KEY = "category_key";
+
     public static final String IM_NAME = "im:name";
     public static final String IM_IMAGE = "im:image";
     public static final String IM_PRICE = "im:price";
