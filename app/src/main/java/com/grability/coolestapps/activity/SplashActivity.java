@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.service.Service;
 import com.grability.coolestapps.service.ServiceResponse;
 import com.grability.coolestapps.util.Constants;
@@ -60,15 +61,27 @@ public class SplashActivity extends AppCompatActivity implements Callback<Servic
         Log.d(LOG_TAG, "ServiceResponse object :: " + response);
         if (response.isSuccessful()) {
             Log.d(LOG_TAG, "ServiceResponse body :: " + response.body());
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra(Constants.FEED_KEY, response.body().getFeed());
-            startActivity(intent);
-            finish();
+            showMainActivity(response.body().getFeed());
+        } else {
+            showMainActivity(null);
         }
     }
 
     @Override
     public void onFailure(Call<ServiceResponse> call, Throwable t) {
         Log.e(LOG_TAG, "Error connecting to the service", t);
+        showMainActivity(null);
+    }
+
+    /**
+     * Shows the main activity once a response is retrieved from the server
+     *
+     * @param feed Response to render on main activity
+     */
+    private void showMainActivity(Feed feed) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Constants.FEED_KEY, feed);
+        startActivity(intent);
+        finish();
     }
 }
