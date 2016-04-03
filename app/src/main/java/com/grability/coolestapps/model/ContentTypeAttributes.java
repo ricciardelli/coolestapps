@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * Defines the {@link ContentType} model attributes.
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class ContentTypeAttributes {
+public class ContentTypeAttributes implements Serializable {
 
     private String term;
     private String label;

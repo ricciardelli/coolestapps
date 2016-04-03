@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * Defines the {@link Price} model attributes.
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class PriceAttributes {
+public class PriceAttributes implements Serializable {
 
     private String amount;
     private String currency;

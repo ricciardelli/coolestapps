@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * Rights model
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class Rights {
+public class Rights implements Serializable {
 
     private String label;
 

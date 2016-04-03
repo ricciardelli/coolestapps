@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * ReleaseDate model
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class ReleaseDate {
+public class ReleaseDate implements Serializable {
 
     private String label;
     private ReleaseDateAttributes attributes;

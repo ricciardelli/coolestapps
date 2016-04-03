@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * Summary model
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class Summary {
+public class Summary implements Serializable {
 
     private String label;
 

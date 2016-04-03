@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * Defines the {@link Image} model attributes.
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class ImageAttributes {
+public class ImageAttributes implements Serializable {
 
     private String height;
 
