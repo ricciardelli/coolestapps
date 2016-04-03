@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * Defines the {@link ReleaseDate} model attributes.
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class ReleaseDateAttributes {
+public class ReleaseDateAttributes implements Serializable {
 
     private String label;
 

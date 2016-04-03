@@ -16,6 +16,7 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ import java.util.List;
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class Feed {
+public class Feed implements Serializable {
 
     private Author author;
     private List<Entry> entry;

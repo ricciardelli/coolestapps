@@ -19,6 +19,7 @@ package com.grability.coolestapps.model;
 import com.google.gson.annotations.SerializedName;
 import com.grability.coolestapps.util.Constants;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ import java.util.List;
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class Entry {
+public class Entry implements Serializable {
 
     @SerializedName(Constants.IM_NAME)
     private Name name;

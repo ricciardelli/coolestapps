@@ -16,13 +16,15 @@
 
 package com.grability.coolestapps.model;
 
+import java.io.Serializable;
+
 /**
  * Defines the {@link Link} model attributes.
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class LinkAttributes {
+public class LinkAttributes implements Serializable {
 
     private String rel;
     private String type;

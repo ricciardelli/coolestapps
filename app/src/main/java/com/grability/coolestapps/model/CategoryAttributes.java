@@ -19,13 +19,15 @@ package com.grability.coolestapps.model;
 import com.google.gson.annotations.SerializedName;
 import com.grability.coolestapps.util.Constants;
 
+import java.io.Serializable;
+
 /**
  * Defines the {@link Category} model attributes.
  *
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class CategoryAttributes {
+public class CategoryAttributes implements Serializable {
 
     @SerializedName(Constants.IM_ID)
     private String id;
