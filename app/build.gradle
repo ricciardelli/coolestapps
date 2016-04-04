@@ -59,4 +59,7 @@ dependencies {
 
     // Glide library
     compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    // Pager Sliding Tab Strip library
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }
