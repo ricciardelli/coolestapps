@@ -16,6 +16,8 @@
 
 package com.grability.coolestapps.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -61,6 +63,8 @@ public class DetailActivityFragment extends Fragment {
     @Bind(R.id.collapse)
     Button collapse;
 
+    private Entry mEntry;
+
     public DetailActivityFragment() {
     }
 
@@ -71,12 +75,12 @@ public class DetailActivityFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         Bundle args = getArguments();
-        Entry entry = (Entry) args.getSerializable(Constants.ENTRY_KEY);
-        if (entry != null) {
-            Glide.with(this).load(entry.getImage().get(2).getLabel()).into(logo);
-            title.setText(entry.getName().getLabel());
-            artist.setText(entry.getArtist().getLabel());
-            summary.setText(entry.getSummary().getLabel());
+        mEntry = (Entry) args.getSerializable(Constants.ENTRY_KEY);
+        if (mEntry != null) {
+            Glide.with(this).load(mEntry.getImage().get(2).getLabel()).into(logo);
+            title.setText(mEntry.getName().getLabel());
+            artist.setText(mEntry.getArtist().getLabel());
+            summary.setText(mEntry.getSummary().getLabel());
         } else {
             Log.e(LOG_TAG, "Entry is null");
         }
@@ -100,6 +104,13 @@ public class DetailActivityFragment extends Fragment {
         summary.setEllipsize(TextUtils.TruncateAt.END);
         collapse.setVisibility(View.GONE);
         readMore.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.title_card)
+    public void openLink(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse(mEntry.getLink().getAttributes().getHref()));
+        startActivity(intent);
     }
 
 }
