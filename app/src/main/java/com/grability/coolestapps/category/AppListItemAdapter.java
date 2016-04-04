@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.adapter;
+package com.grability.coolestapps.category;
 
 import android.content.Context;
 import android.view.LayoutInflater;

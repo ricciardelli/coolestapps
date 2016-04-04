@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.fragment;
+package com.grability.coolestapps.category;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,8 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.grability.coolestapps.R;
-import com.grability.coolestapps.activity.DetailActivity;
-import com.grability.coolestapps.adapter.AppListItemAdapter;
+import com.grability.coolestapps.detail.DetailActivity;
 import com.grability.coolestapps.model.Category;
 import com.grability.coolestapps.model.Entry;
 import com.grability.coolestapps.model.Feed;

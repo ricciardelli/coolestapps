@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.activity;
+package com.grability.coolestapps.home;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -27,14 +27,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.grability.coolestapps.R;
-import com.grability.coolestapps.fragment.MainActivityFragment;
 import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.util.Constants;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             // TODO Retrieve JSON from preferences
             showEmptyView();
         } else {
-            Fragment fragment = new MainActivityFragment();
+            Fragment fragment = new HomeActivityFragment();
             Bundle args = new Bundle();
             args.putSerializable(Constants.FEED_KEY, feed);
             fragment.setArguments(args);

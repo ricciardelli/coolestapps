@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.adapter;
+package com.grability.coolestapps.category;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.grability.coolestapps.fragment.CategoryFragment;
+import com.grability.coolestapps.category.CategoryFragment;
 import com.grability.coolestapps.model.Category;
 import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.util.Constants;
@@ -34,13 +34,13 @@ import java.util.List;
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class TabsPagerAdapter extends FragmentStatePagerAdapter {
+public class CategoryTabsAdapter extends FragmentStatePagerAdapter {
 
     private List<Category> categories;
 
     private Feed feed;
 
-    public TabsPagerAdapter(FragmentManager fragmentManager, List<Category> categories, Feed feed) {
+    public CategoryTabsAdapter(FragmentManager fragmentManager, List<Category> categories, Feed feed) {
         super(fragmentManager);
         this.categories = categories;
         this.feed = feed;

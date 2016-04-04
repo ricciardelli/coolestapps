@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.activity;
+package com.grability.coolestapps.detail;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,7 +24,6 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.grability.coolestapps.R;
-import com.grability.coolestapps.fragment.DetailActivityFragment;
 import com.grability.coolestapps.model.Entry;
 import com.grability.coolestapps.util.Constants;
 

@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.activity;
+package com.grability.coolestapps.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.grability.coolestapps.home.HomeActivity;
 import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.service.Service;
 import com.grability.coolestapps.service.ServiceResponse;
@@ -80,7 +81,7 @@ public class SplashActivity extends AppCompatActivity implements Callback<Servic
      * @param feed Response to render on main activity
      */
     private void showMainActivity(Feed feed) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra(Constants.FEED_KEY, feed);
         startActivity(intent);
         finish();
