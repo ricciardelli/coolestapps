@@ -21,4 +21,7 @@
 
     <!-- Card layout dimen -->
     <dimen name="card_title_padding_left">16dp</dimen>
+
+    <!-- Empty statue layout dimen -->
+    <dimen name="empty_state_height">200dp</dimen>
 </resources>
