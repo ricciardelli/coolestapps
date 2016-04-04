@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Feed feed = (Feed) getIntent().getSerializableExtra(Constants.FEED_KEY);
 
         if (feed == null) {
-            Snackbar.make(mToolbar, R.string.error_connection, Snackbar.LENGTH_LONG)
+            Snackbar.make(mToolbar, R.string.error_connection, Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.action_retry, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
