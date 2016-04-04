@@ -54,6 +54,11 @@ public class Constants {
      */
     public static final String ENTRY_KEY = "entry_key";
 
+    /**
+     * Preferences name on device.
+     */
+    public static final String PREFERENCES_NAME = "coolest_apps_prefs";
+
     public static final String IM_NAME = "im:name";
     public static final String IM_IMAGE = "im:image";
     public static final String IM_PRICE = "im:price";
