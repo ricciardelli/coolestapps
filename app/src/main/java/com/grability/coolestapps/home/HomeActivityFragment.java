@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.category.CategoryTabsAdapter;
 import com.grability.coolestapps.model.Category;
@@ -47,6 +48,9 @@ public class HomeActivityFragment extends Fragment {
     @Bind(R.id.pager)
     ViewPager mViewPager;
 
+    @Bind(R.id.pager_title_strip)
+    PagerSlidingTabStrip mPagerSlidingTabStrip;
+
     private CategoryTabsAdapter mCategoryTabsAdapter;
 
     public HomeActivityFragment() {
@@ -68,6 +72,7 @@ public class HomeActivityFragment extends Fragment {
             }
             mCategoryTabsAdapter = new CategoryTabsAdapter(getChildFragmentManager(), categories, feed);
             mViewPager.setAdapter(mCategoryTabsAdapter);
+            mPagerSlidingTabStrip.setViewPager(mViewPager);
         } else {
             Log.e(LOG_TAG, "Perfect moment to throw a ShouldNotHappenException");
         }
