@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.category;
+package com.grability.coolestapps.entry;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -39,7 +39,7 @@ import butterknife.ButterKnife;
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com
  * @version 1.0
  */
-public class AppListItemAdapter extends BaseAdapter {
+public class EntryListItemAdapter extends BaseAdapter {
 
     private Context context;
     private List<Entry> entries;
@@ -48,7 +48,7 @@ public class AppListItemAdapter extends BaseAdapter {
 
     private ViewHolder mViewHolder;
 
-    public AppListItemAdapter(Context context, List<Entry> entries) {
+    public EntryListItemAdapter(Context context, List<Entry> entries) {
         this.context = context;
         this.entries = entries;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

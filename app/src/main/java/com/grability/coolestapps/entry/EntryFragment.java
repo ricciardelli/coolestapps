@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.category;
+package com.grability.coolestapps.entry;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +47,7 @@ import butterknife.OnItemClick;
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
@@ -80,7 +80,7 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
                     entries.add(entry);
                 }
             }
-            AppListItemAdapter adapter = new AppListItemAdapter(getContext(), entries);
+            EntryListItemAdapter adapter = new EntryListItemAdapter(getContext(), entries);
             mListView.setAdapter(adapter);
         } else {
             Log.d(LOG_TAG, "Category :: " + category);

@@ -21,7 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.grability.coolestapps.category.CategoryFragment;
+import com.grability.coolestapps.entry.EntryFragment;
 import com.grability.coolestapps.model.Category;
 import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.util.Constants;
@@ -48,7 +48,7 @@ public class CategoryTabsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new CategoryFragment();
+        Fragment fragment = new EntryFragment();
         Bundle args = new Bundle();
         args.putSerializable(Constants.CATEGORY_KEY, categories.get(position));
         args.putSerializable(Constants.FEED_KEY, feed);
