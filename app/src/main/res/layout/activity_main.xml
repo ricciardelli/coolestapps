@@ -40,4 +40,6 @@
 
     <include layout="@layout/content_main" />
 
+    <include layout="@layout/empty_layout" />
+
 </android.support.design.widget.CoordinatorLayout>

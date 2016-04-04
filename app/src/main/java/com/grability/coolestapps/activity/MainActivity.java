@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
+    @Bind(R.id.empty)
+    View mEmptyView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }).show();
             // TODO Retrieve JSON from preferences
-            // TODO Show an empty view
+            showEmptyView();
         } else {
             Fragment fragment = new MainActivityFragment();
             Bundle args = new Bundle();
@@ -68,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
             fragment.setArguments(args);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment).commit();
         }
+    }
+
+    /**
+     * Shows empty view when no results were found.
+     * <p/>
+     * This will probably happen just the first time the app is launched.
+     */
+    private void showEmptyView() {
+        mEmptyView.setVisibility(View.VISIBLE);
     }
 
     @Override
