@@ -26,6 +26,7 @@ import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.service.Service;
 import com.grability.coolestapps.service.ServiceResponse;
 import com.grability.coolestapps.util.Constants;
+import com.grability.coolestapps.util.FeedBackup;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,7 +64,7 @@ public class SplashActivity extends AppCompatActivity implements Callback<Servic
         if (response.isSuccessful()) {
             Log.d(LOG_TAG, "ServiceResponse body :: " + response.body());
             showMainActivity(response.body().getFeed());
-            // TODO Save JSON response as a preference
+            FeedBackup.saveFeed(this, response.body().getFeed());
         } else {
             showMainActivity(null);
         }
