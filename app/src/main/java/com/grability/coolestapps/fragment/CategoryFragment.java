@@ -16,19 +16,20 @@
 
 package com.grability.coolestapps.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.grability.coolestapps.R;
-import com.grability.coolestapps.adapter.CardAdapter;
+import com.grability.coolestapps.activity.DetailActivity;
+import com.grability.coolestapps.adapter.AppListItemAdapter;
 import com.grability.coolestapps.model.Category;
 import com.grability.coolestapps.model.Entry;
 import com.grability.coolestapps.model.Feed;
@@ -39,6 +40,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 /**
  * Instances of this class are fragments representing a list of entries from our collection.
@@ -54,7 +56,9 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Bind(R.id.list)
-    RecyclerView mRecyclerView;
+    ListView mListView;
+
+    private Feed mFeed;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,27 +70,22 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        // TODO Get this number from the preferences
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
-        gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
-
         Bundle args = getArguments();
         Category category = (Category) args.getSerializable(Constants.CATEGORY_KEY);
-        Feed feed = (Feed) args.getSerializable(Constants.FEED_KEY);
+        mFeed = (Feed) args.getSerializable(Constants.FEED_KEY);
 
-        if (feed != null && category != null) {
+        if (mFeed != null && category != null) {
             List<Entry> entries = new ArrayList<>();
-            for(Entry entry : feed.getEntry()) {
+            for (Entry entry : mFeed.getEntry()) {
                 if (entry.getCategory().equals(category)) {
                     entries.add(entry);
                 }
             }
-            CardAdapter cardAdapter = new CardAdapter(getContext(), entries);
-            mRecyclerView.setAdapter(cardAdapter);
+            AppListItemAdapter adapter = new AppListItemAdapter(getContext(), entries);
+            mListView.setAdapter(adapter);
         } else {
             Log.d(LOG_TAG, "Category :: " + category);
-            Log.d(LOG_TAG, "Feed :: " + feed);
+            Log.d(LOG_TAG, "Feed :: " + mFeed);
         }
         return view;
     }
@@ -94,5 +93,20 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onRefresh() {
         Log.d(LOG_TAG, "Refreshing");
+    }
+
+    @OnItemClick(R.id.list)
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d(LOG_TAG, "On item click :: position :: " + position + " || id :: " + id);
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        Entry selectedEntry = null;
+        for (Entry entry : mFeed.getEntry()) {
+            if (entry.getId().getAttributes().getId().equalsIgnoreCase(String.valueOf(id))) {
+                selectedEntry = entry;
+                break;
+            }
+        }
+        intent.putExtra(Constants.ENTRY_KEY, selectedEntry);
+        startActivity(intent);
     }
 }
