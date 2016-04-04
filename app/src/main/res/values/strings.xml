@@ -19,6 +19,7 @@
 
     <!-- General errors -->
     <string name="error_connection">We could not update the data</string>
+    <string name="error_no_results">No results found</string>
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
