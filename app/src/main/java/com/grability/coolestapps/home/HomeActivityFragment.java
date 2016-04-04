@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.fragment;
+package com.grability.coolestapps.home;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.grability.coolestapps.R;
-import com.grability.coolestapps.adapter.TabsPagerAdapter;
+import com.grability.coolestapps.category.CategoryTabsAdapter;
 import com.grability.coolestapps.model.Category;
 import com.grability.coolestapps.model.Entry;
 import com.grability.coolestapps.model.Feed;
@@ -40,16 +40,16 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class HomeActivityFragment extends Fragment {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
     @Bind(R.id.pager)
     ViewPager mViewPager;
 
-    private TabsPagerAdapter mTabsPagerAdapter;
+    private CategoryTabsAdapter mCategoryTabsAdapter;
 
-    public MainActivityFragment() {
+    public HomeActivityFragment() {
     }
 
     @Override
@@ -66,8 +66,8 @@ public class MainActivityFragment extends Fragment {
                     categories.add(entry.getCategory());
                 }
             }
-            mTabsPagerAdapter = new TabsPagerAdapter(getChildFragmentManager(), categories, feed);
-            mViewPager.setAdapter(mTabsPagerAdapter);
+            mCategoryTabsAdapter = new CategoryTabsAdapter(getChildFragmentManager(), categories, feed);
+            mViewPager.setAdapter(mCategoryTabsAdapter);
         } else {
             Log.e(LOG_TAG, "Perfect moment to throw a ShouldNotHappenException");
         }

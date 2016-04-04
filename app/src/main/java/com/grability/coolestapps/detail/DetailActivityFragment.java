@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.fragment;
+package com.grability.coolestapps.detail;
 
 import android.content.Intent;
 import android.net.Uri;
