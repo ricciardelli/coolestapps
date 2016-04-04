@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.detail;
+package com.grability.coolestapps.summary;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -41,7 +41,7 @@ import butterknife.OnClick;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class DetailActivityFragment extends Fragment {
+public class SummaryActivityFragment extends Fragment {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
@@ -65,7 +65,7 @@ public class DetailActivityFragment extends Fragment {
 
     private Entry mEntry;
 
-    public DetailActivityFragment() {
+    public SummaryActivityFragment() {
     }
 
     @Override

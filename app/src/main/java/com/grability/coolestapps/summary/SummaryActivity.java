@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grability.coolestapps.detail;
+package com.grability.coolestapps.summary;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class DetailActivity extends AppCompatActivity {
+public class SummaryActivity extends AppCompatActivity {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
@@ -55,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Entry entry = (Entry) getIntent().getSerializableExtra(Constants.ENTRY_KEY);
         if (entry != null) {
-            Fragment fragment = new DetailActivityFragment();
+            Fragment fragment = new SummaryActivityFragment();
             Bundle args = new Bundle();
             args.putSerializable(Constants.ENTRY_KEY, entry);
             fragment.setArguments(args);
