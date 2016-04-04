@@ -28,7 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.grability.coolestapps.R;
-import com.grability.coolestapps.detail.DetailActivity;
+import com.grability.coolestapps.summary.SummaryActivity;
 import com.grability.coolestapps.model.Category;
 import com.grability.coolestapps.model.Entry;
 import com.grability.coolestapps.model.Feed;
@@ -97,7 +97,7 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     @OnItemClick(R.id.list)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d(LOG_TAG, "On item click :: position :: " + position + " || id :: " + id);
-        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        Intent intent = new Intent(getActivity(), SummaryActivity.class);
         Entry selectedEntry = null;
         for (Entry entry : mFeed.getEntry()) {
             if (entry.getId().getAttributes().getId().equalsIgnoreCase(String.valueOf(id))) {

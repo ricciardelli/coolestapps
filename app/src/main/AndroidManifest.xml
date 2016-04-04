@@ -42,7 +42,7 @@
             android:name=".home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".detail.DetailActivity"
+            android:name=".summary.SummaryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
