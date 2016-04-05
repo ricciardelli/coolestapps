@@ -32,4 +32,23 @@
     <string name="description_title">Description</string>
     <string name="loading_title">Loading, please wait</string>
     <string name="retry_success_title">Data updated successfully</string>
+
+    <!-- Preferences -->
+    <string name="preference_limit_key" translatable="false">limit</string>
+    <string name="preference_limit_summary">Set the limit of apps to retrieve from the service</string>
+    <string name="preference_limit_title">Number of apps</string>
+
+    <string name="preference_lines_key" translatable="false">lines</string>
+    <string name="preference_lines_summary">Set the max number of lines to show on an app\'s description</string>
+    <string name="preference_lines_title">Max lines on description</string>
+
+    <string name="preference_autoupdate_key" translatable="false">autoupdate</string>
+    <string name="preference_autoupdate_summary">Check for updates automatically when the app is launched</string>
+    <string name="preference_autoupdate_title">Update data automatically</string>
+
+    <!-- Default limit number of apps from service response -->
+    <string name="default_limit" translatable="false">20</string>
+
+    <!-- Default limit of lines to show on description-->
+    <string name="default_lines" translatable="false">5</string>
 </resources>
