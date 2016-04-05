@@ -69,12 +69,14 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
 
     private EntryListItemAdapter mEntryListItemAdapter;
 
+    private List<Entry> mEntries;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // The last two arguments ensure LayoutParams are inflated properly.
-        View view = inflater.inflate(R.layout.categories_layout, container, false);
+        View view = inflater.inflate(R.layout.entries_layout, container, false);
         ButterKnife.bind(this, view);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -84,7 +86,8 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         mFeed = (Feed) args.getSerializable(Constants.FEED_KEY);
 
         if (mFeed != null && mCategory != null) {
-            mEntryListItemAdapter = new EntryListItemAdapter(getContext(), getEntries());
+            mEntries = getEntries();
+            mEntryListItemAdapter = new EntryListItemAdapter(getContext(), mEntries);
             mListView.setAdapter(mEntryListItemAdapter);
         } else {
             Log.d(LOG_TAG, "Category :: " + mCategory);
@@ -107,7 +110,7 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
      * Refreshes the data from service
      */
     private void refresh() {
-        ServiceBundle.getInstance().getFeed(this);
+        ServiceBundle.getInstance().getFeed(getActivity(), this);
     }
 
     /**
@@ -155,6 +158,8 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         cancelRefreshing();
         if (response.isSuccessful()) {
             mFeed = response.body().getFeed();
+            mEntries.clear();
+            mEntries.addAll(getEntries());
             mEntryListItemAdapter.notifyDataSetChanged();
             showToast(R.string.retry_success_title);
         } else {

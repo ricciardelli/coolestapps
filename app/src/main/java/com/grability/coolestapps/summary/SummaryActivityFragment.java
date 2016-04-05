@@ -17,8 +17,10 @@
 package com.grability.coolestapps.summary;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -65,14 +67,24 @@ public class SummaryActivityFragment extends Fragment {
 
     private Entry mEntry;
 
+    private int mLines;
+
     public SummaryActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_summary, container, false);
         ButterKnife.bind(this, view);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String lines = preferences.getString(getString(R.string.preference_lines_key),
+                getString(R.string.default_lines));
+
+        Log.d(LOG_TAG, "Lines retrieved from preferences :: " + lines);
+
+        mLines = Integer.parseInt(lines);
 
         Bundle args = getArguments();
         mEntry = (Entry) args.getSerializable(Constants.ENTRY_KEY);
@@ -81,6 +93,7 @@ public class SummaryActivityFragment extends Fragment {
             title.setText(mEntry.getName().getLabel());
             artist.setText(mEntry.getArtist().getLabel());
             summary.setText(mEntry.getSummary().getLabel());
+            summary.setMaxLines(mLines);
         } else {
             Log.e(LOG_TAG, "Entry is null");
         }
@@ -99,8 +112,7 @@ public class SummaryActivityFragment extends Fragment {
     @OnClick(R.id.collapse)
     public void collapse(View view) {
         Log.d(LOG_TAG, "Collapsing text");
-        // TODO Get this number from preferences
-        summary.setMaxLines(5);
+        summary.setMaxLines(mLines);
         summary.setEllipsize(TextUtils.TruncateAt.END);
         collapse.setVisibility(View.GONE);
         readMore.setVisibility(View.VISIBLE);

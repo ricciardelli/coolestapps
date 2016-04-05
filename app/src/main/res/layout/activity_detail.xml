@@ -38,6 +38,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_detail" />
+    <include layout="@layout/content_summary" />
 
 </android.support.design.widget.CoordinatorLayout>
