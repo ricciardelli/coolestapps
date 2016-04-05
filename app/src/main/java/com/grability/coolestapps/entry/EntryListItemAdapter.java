@@ -72,7 +72,7 @@ public class EntryListItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.app_list_item_layout, parent, false);
+            convertView = mLayoutInflater.inflate(R.layout.entry_list_item_layout, parent, false);
             mViewHolder = new ViewHolder(convertView);
             convertView.setTag(mViewHolder);
         } else {
