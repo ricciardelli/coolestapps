@@ -50,7 +50,7 @@
                     android:layout_toRightOf="@id/logo"
                     android:paddingLeft="@dimen/card_title_padding_left"
                     android:text="@string/placeholder_app_title"
-                    android:textAppearance="@android:style/TextAppearance.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/artist"
@@ -97,7 +97,7 @@
 
                 <Button
                     android:id="@+id/read_more"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -107,7 +107,7 @@
 
                 <Button
                     android:id="@+id/collapse"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
