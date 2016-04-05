@@ -20,6 +20,7 @@
     <!-- General errors -->
     <string name="error_connection">We could not update the data</string>
     <string name="error_no_results">No results found</string>
+    <string name="error_retry">Error trying to connect</string>
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
@@ -29,4 +30,6 @@
 
     <!-- Titles -->
     <string name="description_title">Description</string>
+    <string name="loading_title">Loading, please wait</string>
+    <string name="retry_success_title">Data updated successfully</string>
 </resources>
