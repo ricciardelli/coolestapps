@@ -16,6 +16,7 @@
 
 package com.grability.coolestapps.home;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -25,16 +26,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.model.Feed;
+import com.grability.coolestapps.service.ServiceBundle;
+import com.grability.coolestapps.service.ServiceBundleListener;
+import com.grability.coolestapps.service.ServiceResponse;
 import com.grability.coolestapps.util.Constants;
 import com.grability.coolestapps.util.FeedBackup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements ServiceBundleListener {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
@@ -43,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
 
     @Bind(R.id.empty)
     View mEmptyView;
+
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         Feed feed = (Feed) getIntent().getSerializableExtra(Constants.FEED_KEY);
 
         if (feed == null) {
-            Snackbar.make(mToolbar, R.string.error_connection, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.action_retry, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Log.d(LOG_TAG, "Retry connection");
-                        }
-                    }).show();
+            showErrorSnackbar();
             feed = FeedBackup.retrieveFeed(this);
             if (feed == null) {
                 showEmptyView();
@@ -72,6 +75,37 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             showFragment(feed);
         }
+    }
+
+    /**
+     * Retries connection to update data.
+     */
+    private void retry() {
+        mProgressDialog = ProgressDialog.show(this, "", getString(R.string.loading_title), true);
+        ServiceBundle.getInstance().getFeed(this);
+    }
+
+    /**
+     * Shows a snackbar with a message to retry to update the data
+     */
+    private void showErrorSnackbar() {
+        Snackbar.make(mToolbar, R.string.error_connection, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.action_retry, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d(LOG_TAG, "Retry connection");
+                        retry();
+                    }
+                }).show();
+    }
+
+    /**
+     * Shows a toast with a message to the user about the retrying connection process.
+     *
+     * @param res The string resource to show as text on the toast
+     */
+    private void showToast(int res) {
+        Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -116,5 +150,26 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
+        Log.d(LOG_TAG, "Response when retrying :: " + response);
+        mProgressDialog.dismiss();
+        if (response.isSuccessful()) {
+            showToast(R.string.retry_success_title);
+            showFragment(response.body().getFeed());
+        } else {
+            showToast(R.string.error_retry);
+            showErrorSnackbar();
+        }
+    }
+
+    @Override
+    public void onFailure(Call<ServiceResponse> call, Throwable t) {
+        Log.e(LOG_TAG, "Error while retrying connection", t);
+        mProgressDialog.dismiss();
+        showToast(R.string.error_retry);
+        showErrorSnackbar();
     }
 }

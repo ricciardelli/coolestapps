@@ -23,16 +23,14 @@ import android.util.Log;
 
 import com.grability.coolestapps.home.HomeActivity;
 import com.grability.coolestapps.model.Feed;
-import com.grability.coolestapps.service.Service;
+import com.grability.coolestapps.service.ServiceBundle;
+import com.grability.coolestapps.service.ServiceBundleListener;
 import com.grability.coolestapps.service.ServiceResponse;
 import com.grability.coolestapps.util.Constants;
 import com.grability.coolestapps.util.FeedBackup;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Shows the splash screen following best practices.
@@ -40,22 +38,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class SplashActivity extends AppCompatActivity implements Callback<ServiceResponse> {
+public class SplashActivity extends AppCompatActivity implements ServiceBundleListener {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.SERVICE_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Service service = retrofit.create(Service.class);
-        // TODO Get limit from preferences
-        service.getFeed(20).enqueue(this);
+        ServiceBundle.getInstance().getFeed(this);
     }
 
     @Override
