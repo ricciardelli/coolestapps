@@ -16,6 +16,12 @@
 
 package com.grability.coolestapps.service;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.grability.coolestapps.R;
 import com.grability.coolestapps.util.Constants;
 
 import retrofit2.Call;
@@ -30,7 +36,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceBundle implements Callback<ServiceResponse> {
 
+    private final String LOG_TAG = getClass().getSimpleName();
+
     private static ServiceBundle ourInstance = new ServiceBundle();
+
+    private Context context;
 
     private ServiceBundleListener serviceBundleListener;
 
@@ -46,12 +56,19 @@ public class ServiceBundle implements Callback<ServiceResponse> {
      *
      * @param serviceBundleListener Listener on server response
      */
-    public void getFeed(ServiceBundleListener serviceBundleListener) {
+    public void getFeed(Context context, ServiceBundleListener serviceBundleListener) {
+        this.context = context;
         this.serviceBundleListener = serviceBundleListener;
 
         Service service = getService();
-        // TODO Get limit from preferences
-        service.getFeed(20).enqueue(this);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String limit = preferences.getString(context.getString(R.string.preference_limit_key),
+                context.getString(R.string.default_limit));
+
+        Log.d(LOG_TAG, "Limit retrieved from preferences :: " + limit);
+
+        service.getFeed(Integer.parseInt(limit)).enqueue(this);
     }
 
     /**
