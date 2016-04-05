@@ -29,6 +29,7 @@ import android.view.View;
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.util.Constants;
+import com.grability.coolestapps.util.FeedBackup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -61,15 +62,29 @@ public class HomeActivity extends AppCompatActivity {
                             Log.d(LOG_TAG, "Retry connection");
                         }
                     }).show();
-            // TODO Retrieve JSON from preferences
-            showEmptyView();
+            feed = FeedBackup.retrieveFeed(this);
+            if (feed == null) {
+                showEmptyView();
+            } else {
+                Log.d(LOG_TAG, "Retrieved feed from preferences :: " + feed);
+                showFragment(feed);
+            }
         } else {
-            Fragment fragment = new HomeActivityFragment();
-            Bundle args = new Bundle();
-            args.putSerializable(Constants.FEED_KEY, feed);
-            fragment.setArguments(args);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment).commit();
+            showFragment(feed);
         }
+    }
+
+    /**
+     * Shows fragment to render the categories
+     *
+     * @param feed Response to render on activity
+     */
+    private void showFragment(Feed feed) {
+        Fragment fragment = new HomeActivityFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(Constants.FEED_KEY, feed);
+        fragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment).commit();
     }
 
     /**
