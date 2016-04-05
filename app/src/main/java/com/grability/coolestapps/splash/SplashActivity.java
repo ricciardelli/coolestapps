@@ -17,10 +17,13 @@
 package com.grability.coolestapps.splash;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.grability.coolestapps.R;
 import com.grability.coolestapps.home.HomeActivity;
 import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.service.ServiceBundle;
@@ -45,7 +48,16 @@ public class SplashActivity extends AppCompatActivity implements ServiceBundleLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ServiceBundle.getInstance().getFeed(this);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean autoupdate = preferences.getBoolean(
+                getString(R.string.preference_autoupdate_key), true);
+
+        if (autoupdate) {
+            ServiceBundle.getInstance().getFeed(this, this);
+        } else {
+            showMainActivity(FeedBackup.retrieveFeed(this));
+        }
     }
 
     @Override
