@@ -17,6 +17,7 @@
 package com.grability.coolestapps.home;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,7 @@ import android.widget.Toast;
 
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.model.Feed;
+import com.grability.coolestapps.preference.SettingsActivity;
 import com.grability.coolestapps.service.ServiceBundle;
 import com.grability.coolestapps.service.ServiceBundleListener;
 import com.grability.coolestapps.service.ServiceResponse;
@@ -82,7 +84,7 @@ public class HomeActivity extends AppCompatActivity implements ServiceBundleList
      */
     private void retry() {
         mProgressDialog = ProgressDialog.show(this, "", getString(R.string.loading_title), true);
-        ServiceBundle.getInstance().getFeed(this);
+        ServiceBundle.getInstance().getFeed(this, this);
     }
 
     /**
@@ -146,6 +148,7 @@ public class HomeActivity extends AppCompatActivity implements ServiceBundleList
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
