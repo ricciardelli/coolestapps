@@ -1,4 +1,54 @@
+<!--
+  ~ Copyright 2016 Richard Ricciardelli
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
     <string name="app_name">CoolestApps</string>
+
+    <!-- General errors -->
+    <string name="error_connection">We could not update the data</string>
+    <string name="error_no_results">No results found</string>
+    <string name="error_retry">Error trying to connect</string>
+
+    <!-- Actions -->
     <string name="action_settings">Settings</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_read_more">Read more</string>
+    <string name="action_collapse">Collapse</string>
+
+    <!-- Titles -->
+    <string name="description_title">Description</string>
+    <string name="loading_title">Loading, please wait</string>
+    <string name="retry_success_title">Data updated successfully</string>
+
+    <!-- Preferences -->
+    <string name="preference_limit_key" translatable="false">limit</string>
+    <string name="preference_limit_summary">Set the limit of apps to retrieve from the service</string>
+    <string name="preference_limit_title">Number of apps</string>
+
+    <string name="preference_lines_key" translatable="false">lines</string>
+    <string name="preference_lines_summary">Set the max number of lines to show on an app\'s description</string>
+    <string name="preference_lines_title">Max lines on description</string>
+
+    <string name="preference_autoupdate_key" translatable="false">autoupdate</string>
+    <string name="preference_autoupdate_summary">Check for updates automatically when the app is launched</string>
+    <string name="preference_autoupdate_title">Update data automatically</string>
+
+    <!-- Default limit number of apps from service response -->
+    <string name="default_limit" translatable="false">20</string>
+
+    <!-- Default limit of lines to show on description-->
+    <string name="default_lines" translatable="false">5</string>
 </resources>

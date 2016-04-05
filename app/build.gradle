@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016 Richard Ricciardelli
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 apply plugin: 'com.android.application'
 
 android {
@@ -24,4 +40,26 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
+
+    // Gson library
+    compile 'com.google.code.gson:gson:2.6.2'
+
+    // Retrofit libraries
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+
+    // ButterKnife library
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    // RecyclerView library
+    compile 'com.android.support:recyclerview-v7:23.2.1'
+
+    // CardView library
+    compile 'com.android.support:cardview-v7:23.2.1'
+
+    // Glide library
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    // Pager Sliding Tab Strip library
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }

@@ -1,0 +1,21 @@
+<!--
+  ~ Copyright 2016 Richard Ricciardelli
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="placeholder_app_title">Instant soup</string>
+    <string name="placeholder_app_artist">The Flying Dutchman</string>
+    <string name="placeholder_app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eleifend mi id neque condimentum vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at aliquet tortor. Duis vehicula, velit vitae sagittis sollicitudin, tortor sem mattis velit, et blandit nunc nibh ut mi. In nec posuere nisi, ut fringilla metus. Suspendisse velit leo, cursus eu porta nec, placerat sit amet elit. Duis nulla justo, convallis at lorem sit amet, mollis pretium leo. Nunc sed nisi tempus sapien ullamcorper lobortis. Vestibulum et erat sapien. Aliquam erat volutpat. Sed tincidunt in urna eu ultrices.</string>
+</resources>
