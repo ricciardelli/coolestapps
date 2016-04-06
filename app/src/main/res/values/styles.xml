@@ -38,6 +38,7 @@
     </style>
 
     <style name="CardView.Style" parent="Theme.AppCompat.Light">
+        <item name="contentPadding">16dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
