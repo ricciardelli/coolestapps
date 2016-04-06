@@ -16,16 +16,17 @@
 
 package com.grability.coolestapps.entry;
 
-import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.grability.coolestapps.R;
@@ -35,7 +36,6 @@ import com.grability.coolestapps.model.Feed;
 import com.grability.coolestapps.service.ServiceBundle;
 import com.grability.coolestapps.service.ServiceBundleListener;
 import com.grability.coolestapps.service.ServiceResponse;
-import com.grability.coolestapps.summary.SummaryActivity;
 import com.grability.coolestapps.util.Constants;
 
 import java.util.ArrayList;
@@ -43,7 +43,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -61,7 +60,7 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Bind(R.id.list)
-    ListView mListView;
+    RecyclerView mRecyclerView;
 
     private Feed mFeed;
 
@@ -85,10 +84,12 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         mCategory = (Category) args.getSerializable(Constants.CATEGORY_KEY);
         mFeed = (Feed) args.getSerializable(Constants.FEED_KEY);
 
+        mRecyclerView.setLayoutManager(getLayoutManager());
+
         if (mFeed != null && mCategory != null) {
             mEntries = getEntries();
             mEntryListItemAdapter = new EntryListItemAdapter(getContext(), mEntries);
-            mListView.setAdapter(mEntryListItemAdapter);
+            mRecyclerView.setAdapter(mEntryListItemAdapter);
         } else {
             Log.d(LOG_TAG, "Category :: " + mCategory);
             Log.d(LOG_TAG, "Feed :: " + mFeed);
@@ -96,6 +97,28 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         return view;
     }
 
+    private RecyclerView.LayoutManager getLayoutManager() {
+        // TODO Get this number from preferences as well
+        return isLargeScreen()
+                ? new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL)
+                : new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+    }
+
+    /**
+     * Returns whether the screen is large or not
+     *
+     * @return {¢code true} if large, {@code false} otherwise
+     */
+    private boolean isLargeScreen() {
+        int screenLayout = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        return screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE || screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+    }
+
+    /**
+     * Returns the list of entries
+     *
+     * @return List of entries
+     */
     private List<Entry> getEntries() {
         List<Entry> entries = new ArrayList<>();
         for (Entry entry : mFeed.getEntry()) {
@@ -135,21 +158,6 @@ public class EntryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     public void onRefresh() {
         Log.d(LOG_TAG, "Refreshing");
         refresh();
-    }
-
-    @OnItemClick(R.id.list)
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(LOG_TAG, "On item click :: position :: " + position + " || id :: " + id);
-        Intent intent = new Intent(getActivity(), SummaryActivity.class);
-        Entry selectedEntry = null;
-        for (Entry entry : mFeed.getEntry()) {
-            if (entry.getId().getAttributes().getId().equalsIgnoreCase(String.valueOf(id))) {
-                selectedEntry = entry;
-                break;
-            }
-        }
-        intent.putExtra(Constants.ENTRY_KEY, selectedEntry);
-        startActivity(intent);
     }
 
     @Override
