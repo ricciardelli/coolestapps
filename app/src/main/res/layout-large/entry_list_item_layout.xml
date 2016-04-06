@@ -17,7 +17,6 @@
   -->
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/entry"
     style="@style/CardView.Style"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
