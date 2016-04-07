@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.model.Entry;
 import com.grability.coolestapps.summary.SummaryActivity;
+import com.grability.coolestapps.util.AnimationUtils;
 import com.grability.coolestapps.util.Constants;
 
 import java.util.List;
@@ -60,6 +62,10 @@ public class EntryListItemAdapter extends RecyclerView.Adapter<EntryListItemAdap
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(
                 parent.getContext()).inflate(R.layout.entry_list_item_layout, parent, false);
+        Animation animation = AnimationUtils.getAnimation(context);
+        if (animation != null) {
+            view.setAnimation(animation);
+        }
         return new ViewHolder(view, this);
     }
 
@@ -91,7 +97,7 @@ public class EntryListItemAdapter extends RecyclerView.Adapter<EntryListItemAdap
         context.startActivity(intent);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private OnEntryClickListener onEntryClickListener;
 

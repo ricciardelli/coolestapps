@@ -42,4 +42,7 @@
 
     <string name="preference_autoupdate_summary">Revisa por actualizaciones automáticamente cuando la aplicación es iniciada</string>
     <string name="preference_autoupdate_title">Actualizar datos automáticamente</string>
+
+    <string name="preference_animation_summary">Activar animaciones cool</string>
+    <string name="preference_animation_title">Animaciones</string>
 </resources>
