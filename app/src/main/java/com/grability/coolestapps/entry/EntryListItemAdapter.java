@@ -17,16 +17,22 @@
 package com.grability.coolestapps.entry;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.model.Entry;
+import com.grability.coolestapps.summary.SummaryActivity;
+import com.grability.coolestapps.util.AnimationUtils;
+import com.grability.coolestapps.util.Constants;
 
 import java.util.List;
 
@@ -36,56 +42,64 @@ import butterknife.ButterKnife;
 /**
  * Renders an app logo and title on a list view.
  *
- * @author Richard Ricciardelli (ricciardelli2021@gmail.com
+ * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
-public class EntryListItemAdapter extends BaseAdapter {
+public class EntryListItemAdapter extends RecyclerView.Adapter<EntryListItemAdapter.ViewHolder> implements OnEntryClickListener {
+
+    private final String LOG_TAG = getClass().getSimpleName();
 
     private Context context;
+
     private List<Entry> entries;
-
-    private LayoutInflater mLayoutInflater;
-
-    private ViewHolder mViewHolder;
 
     public EntryListItemAdapter(Context context, List<Entry> entries) {
         this.context = context;
         this.entries = entries;
-        mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public int getCount() {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(
+                parent.getContext()).inflate(R.layout.entry_list_item_layout, parent, false);
+        Animation animation = AnimationUtils.getAnimation(context);
+        if (animation != null) {
+            view.setAnimation(animation);
+        }
+        return new ViewHolder(view, this);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Entry entry = entries.get(position);
+        Glide.with(context).load(entry.getImage().get(2).getLabel()).into(holder.logo);
+        holder.title.setText(entry.getName().getLabel());
+        holder.bind(entry);
+    }
+
+    @Override
+    public int getItemCount() {
         return entries.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return entries.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return Long.parseLong(entries.get(position).getId().getAttributes().getId());
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.entry_list_item_layout, parent, false);
-            mViewHolder = new ViewHolder(convertView);
-            convertView.setTag(mViewHolder);
-        } else {
-            mViewHolder = (ViewHolder) convertView.getTag();
+    public void onClick(String id) {
+        Log.d(LOG_TAG, "On entry click :: id :: " + id);
+        Intent intent = new Intent(context, SummaryActivity.class);
+        Entry selectedEntry = null;
+        for (Entry entry : entries) {
+            if (entry.getId().getAttributes().getId().equalsIgnoreCase(String.valueOf(id))) {
+                selectedEntry = entry;
+                break;
+            }
         }
-
-        Entry entry = entries.get(position);
-        Glide.with(context).load(entry.getImage().get(2).getLabel()).into(mViewHolder.logo);
-        mViewHolder.title.setText(entry.getName().getLabel());
-        return convertView;
+        intent.putExtra(Constants.ENTRY_KEY, selectedEntry);
+        context.startActivity(intent);
     }
 
-    protected static class ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private OnEntryClickListener onEntryClickListener;
 
         @Bind(R.id.logo)
         ImageView logo;
@@ -93,8 +107,22 @@ public class EntryListItemAdapter extends BaseAdapter {
         @Bind(R.id.title)
         TextView title;
 
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+        public ViewHolder(View itemView, OnEntryClickListener onEntryClickListener) {
+            super(itemView);
+            this.onEntryClickListener = onEntryClickListener;
+            ButterKnife.bind(this, itemView);
+        }
+
+        public void bind(Entry entry) {
+            itemView.setId(Integer.parseInt(entry.getId().getAttributes().getId()));
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (onEntryClickListener != null) {
+                onEntryClickListener.onClick(String.valueOf(view.getId()));
+            }
         }
     }
 }

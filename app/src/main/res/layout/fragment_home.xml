@@ -26,8 +26,7 @@
         android:id="@+id/pager_title_strip"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tabs_height"
-        app:pstsIndicatorColor="@color/accent"
-        app:pstsShouldExpand="true" />
+        app:pstsIndicatorColor="@color/accent" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

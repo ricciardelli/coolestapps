@@ -1,0 +1,48 @@
+<!--
+  ~ Copyright 2016 Richard Ricciardelli
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">CoolestApps</string>
+
+    <!-- General errors -->
+    <string name="error_connection">No pudimos actualizar los datos</string>
+    <string name="error_no_results">No se encontraron resultados</string>
+    <string name="error_retry">Error intentando conectarse</string>
+
+    <!-- Actions -->
+    <string name="action_settings">Configuraciones</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="action_read_more">Leer más</string>
+    <string name="action_collapse">Colapsar</string>
+
+    <!-- Titles -->
+    <string name="description_title">Descripción</string>
+    <string name="loading_title">Cargando, espere por favor</string>
+    <string name="retry_success_title">Datos actualizados exitosamente</string>
+
+    <!-- Preferences -->
+    <string name="preference_limit_summary">Establece el límite de aplicaciones a recibir desde el servicio</string>
+    <string name="preference_limit_title">Número de aplicaciones</string>
+
+    <string name="preference_lines_summary">Establece el número máximo de líneas a mostrar en la descripción de una aplicación</string>
+    <string name="preference_lines_title">Número de líneas máximo en la descripción</string>
+
+    <string name="preference_autoupdate_summary">Revisa por actualizaciones automáticamente cuando la aplicación es iniciada</string>
+    <string name="preference_autoupdate_title">Actualizar datos automáticamente</string>
+
+    <string name="preference_animation_summary">Activar animaciones cool</string>
+    <string name="preference_animation_title">Animaciones</string>
+</resources>

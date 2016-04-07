@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.model.Entry;
+import com.grability.coolestapps.util.AnimationUtils;
 import com.grability.coolestapps.util.Constants;
 
 import butterknife.Bind;
@@ -42,10 +44,19 @@ import butterknife.OnClick;
 
 /**
  * A placeholder fragment containing a simple view.
+ *
+ * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
+ * @version 1.0
  */
 public class SummaryActivityFragment extends Fragment {
 
     private final String LOG_TAG = getClass().getSimpleName();
+
+    @Bind(R.id.title_card)
+    View titleCard;
+
+    @Bind(R.id.description_card)
+    View descriptionCard;
 
     @Bind(R.id.logo)
     ImageView logo;
@@ -84,6 +95,8 @@ public class SummaryActivityFragment extends Fragment {
 
         Log.d(LOG_TAG, "Lines retrieved from preferences :: " + lines);
 
+        startAnimations();
+
         mLines = Integer.parseInt(lines);
 
         Bundle args = getArguments();
@@ -98,6 +111,17 @@ public class SummaryActivityFragment extends Fragment {
             Log.e(LOG_TAG, "Entry is null");
         }
         return view;
+    }
+
+    /**
+     * Starts scale animation on cards
+     */
+    private void startAnimations() {
+        Animation animation = AnimationUtils.getAnimation(getActivity());
+        if (animation != null) {
+            titleCard.startAnimation(animation);
+            descriptionCard.startAnimation(animation);
+        }
     }
 
     @OnClick(R.id.read_more)
