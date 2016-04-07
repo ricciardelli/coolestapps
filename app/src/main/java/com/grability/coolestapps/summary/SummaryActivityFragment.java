@@ -27,7 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.ScaleAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +35,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.grability.coolestapps.R;
 import com.grability.coolestapps.model.Entry;
+import com.grability.coolestapps.util.AnimationUtils;
 import com.grability.coolestapps.util.Constants;
 
 import butterknife.Bind;
@@ -91,12 +92,7 @@ public class SummaryActivityFragment extends Fragment {
 
         Log.d(LOG_TAG, "Lines retrieved from preferences :: " + lines);
 
-        boolean animated = preferences.getBoolean(getString(R.string.preference_animation_key),
-                false);
-
-        if (animated) {
-            startAnimations();
-        }
+        startAnimations();
 
         mLines = Integer.parseInt(lines);
 
@@ -118,12 +114,11 @@ public class SummaryActivityFragment extends Fragment {
      * Starts scale animation on cards
      */
     private void startAnimations() {
-        ScaleAnimation animation = new ScaleAnimation(0, 1, 0, 1);
-        animation.setDuration(1000);
-        animation.setFillAfter(true);
-
-        titleCard.startAnimation(animation);
-        descriptionCard.startAnimation(animation);
+        Animation animation = AnimationUtils.getAnimation(getActivity());
+        if (animation != null) {
+            titleCard.startAnimation(animation);
+            descriptionCard.startAnimation(animation);
+        }
     }
 
     @OnClick(R.id.read_more)
