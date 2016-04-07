@@ -42,7 +42,7 @@ import butterknife.ButterKnife;
 /**
  * Renders an app logo and title on a list view.
  *
- * @author Richard Ricciardelli (ricciardelli2021@gmail.com
+ * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
  * @version 1.0
  */
 public class EntryListItemAdapter extends RecyclerView.Adapter<EntryListItemAdapter.ViewHolder> implements OnEntryClickListener {

@@ -44,6 +44,9 @@ import butterknife.OnClick;
 
 /**
  * A placeholder fragment containing a simple view.
+ *
+ * @author Richard Ricciardelli (ricciardelli2021@gmail.com)
+ * @version 1.0
  */
 public class SummaryActivityFragment extends Fragment {
 
